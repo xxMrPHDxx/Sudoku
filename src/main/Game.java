@@ -19,7 +19,7 @@ public class Game extends JPanel implements Runnable,KeyListener,MouseListener {
 	private static final long serialVersionUID = 1L;
 	
 	public static final int WIDTH = 388,HEIGHT = 388;
-	public static final String TITLE = "SUDOKU2";
+	public static final String TITLE = "SUDOKU";
 	
 	private int FPS = 60;
 	
@@ -134,14 +134,7 @@ public class Game extends JPanel implements Runnable,KeyListener,MouseListener {
 	}
 
 	public void keyPressed(KeyEvent e) {
-		if(e.getKeyCode() == KeyEvent.VK_C){
-			if(!grid.checkCells()){
-				System.out.println("Grid has been solved!");
-			}else{
-				System.out.println("Grid has error!");
-			}
-		}
-		grid.keyPressed(e.getKeyCode());
+		grid.keyPressed(e);
 	}
 
 	public void keyReleased(KeyEvent e) {
@@ -152,28 +145,23 @@ public class Game extends JPanel implements Runnable,KeyListener,MouseListener {
 		
 	}
 
-	@Override
-	public void mouseClicked(MouseEvent arg0) {
+	public void mouseClicked(MouseEvent e) {
 		
 	}
 
-	@Override
-	public void mouseEntered(MouseEvent arg0) {
+	public void mouseEntered(MouseEvent e) {
 		
 	}
 
-	@Override
-	public void mouseExited(MouseEvent arg0) {
+	public void mouseExited(MouseEvent e) {
 		
 	}
 
-	@Override
 	public void mousePressed(MouseEvent e) {
 		grid.mousePressed(e);
 	}
 
-	@Override
-	public void mouseReleased(MouseEvent arg0) {
+	public void mouseReleased(MouseEvent e) {
 		
 	}
 

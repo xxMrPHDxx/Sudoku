@@ -6,74 +6,45 @@ import java.awt.Graphics;
 
 public class Cell {
 
-	private String c;
+	public int value = 0;
+	
 	private int x,y;
 	
-	private int row,col;
+	private final int p=2,p2=p * 2,size=40;
 	
-	private int p=2;
-	private int p2=4;
-	private int size=40;
-	
-	private boolean selected = false;
-	
-	private boolean original = false;
+	boolean selected = false;
+	boolean original = false;
 	
 	public Cell(int i,int j){
-		this.c = " ";
-		this.row = i;
-		this.col = j;
 		this.x = p * (j - (int)(j/3)) + p2 * ((int)(j/3) + 1) + j * size;
 		this.y = p * (i - (int)(i/3)) + p2 * ((int)(i/3) + 1) + i * size;
-	}
-	
-	public void original(){
-		this.original = true;
-	}
-	
-	public boolean isOriginal(){
-		return original;
 	}
 	
 	public boolean contains(int x,int y){
 		return (x > this.x && x < this.x + size && y > this.y && y < this.y + size);
 	}
 	
-	public int getRow(){
-		return row;
-	}
-	public int getCol(){
-		return col;
+	public void setValue(int value){
+		this.value = value;
+		original = true;
 	}
 	
-	public String getRowCol(){
-		return ("row " + (row+1) + ", col "+(col+1));
-	}
-	
-	public void setValue(String c){
-		this.c = c;
-	}
-	
-	public String getValue(){
-		return c;
-	}
-	
-	public void select(){
-		selected = true;
-	}
-	
-	public boolean isSelected(){
-		return selected;
+	public void clear(){
+		this.value = 0;
+		original = false;
 	}
 	
 	public void draw(Graphics g){
 		g.fillRect(x, y, size, size);
 		g.setColor(Color.BLACK);
-		if(!original)
+		if(!original){
 			g.setFont(new Font("Century Gothic",Font.PLAIN, 30));
-		else
+		}else{
 			g.setFont(new Font("Century Gothic",Font.BOLD, 30));
-		g.drawString(c, x + size - 30, y + size - 10);
+			g.setColor(Color.BLUE);
+		}
+		if(value == 0)return;
+		g.drawString(String.valueOf(value), x + size - 30, y + size - 10);
 	}
 	
 }
